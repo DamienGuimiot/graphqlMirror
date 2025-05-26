@@ -1,9 +1,8 @@
 import Image from "next/image";
+import Loginform from "./Loginform";
 
 export default function Home() {
   return (
-    <div>
-      <a href="/test">vers test</a>
-    </div>
+    <Loginform />
   );
 }
