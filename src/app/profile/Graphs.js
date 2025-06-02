@@ -6,22 +6,16 @@ import LogOut from "./LogOut"
 
 export default function Graphs() {
     const router = useRouter()
-    let jwt
-    try {
-        jwt = localStorage.getItem("logToken")
-    } catch(e) {
-        console.log(e)
-    }
-    if(!jwt) {
-        useEffect(() => {
-            router.push("/")
-        })
-    }
-
     const[loading, setLoading] = useState(true)
     const[result, setResult] = useState(null)
     
     useEffect(() => {
+        const jwt = localStorage.getItem("logToken")
+        
+        if(!jwt) {
+            router.push("/")
+        }
+
         fetch("https://zone01normandie.org/api/graphql-engine/v1/graphql", {
                 method: "POST",
                 headers: {
