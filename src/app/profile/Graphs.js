@@ -1,11 +1,17 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo} from "react"
+import { useRouter } from "next/navigation"
 import LogOut from "./LogOut"
 
-export default function Home() {
-    
-    const jwt = localStorage.getItem("logToken")
+export default function Graphs(data) {
+    let jwt
+    try {
+        jwt = localStorage.getItem("logToken")
+    } catch(e) {
+        console.log(e)
+    }
+
     const[loading, setLoading] = useState(true)
     const[result, setResult] = useState(null)
     
@@ -62,6 +68,7 @@ export default function Home() {
 
     if(loading) return <p>loading</p>
     if(!result) return <p>no data</p>
+    if(!result.user) return <p>no user</p>
 
     // console.log(result.data.user[0])
     return (
