@@ -20,10 +20,8 @@ export default function Loginform() {
             }
         })
         if(jwt.status == 200) {
-            console.log("ok")
-            jwt.json().then(data => localStorage.setItem("logToken", data))
-            
-            router.push("/profile")
+            // console.log("ok")
+            jwt.json().then(data => localStorage.setItem("logToken", data)).then(router.push("/profile"))
         } else {
             inputUser.value = ""
             inputPass = ""
