@@ -4,12 +4,18 @@ import { useState, useEffect, useMemo} from "react"
 import { useRouter } from "next/navigation"
 import LogOut from "./LogOut"
 
-export default function Graphs(data) {
+export default function Graphs() {
+    const router = useRouter()
     let jwt
     try {
         jwt = localStorage.getItem("logToken")
     } catch(e) {
         console.log(e)
+    }
+    if(!jwt) {
+        useEffect(() => {
+            router.push("/")
+        })
     }
 
     const[loading, setLoading] = useState(true)
@@ -68,7 +74,6 @@ export default function Graphs(data) {
 
     if(loading) return <p>loading</p>
     if(!result) return <p>no data</p>
-    if(!result.user) return <p>no user</p>
 
     // console.log(result.data.user[0])
     return (
