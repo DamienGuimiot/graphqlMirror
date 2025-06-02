@@ -24,7 +24,7 @@ export default function Loginform() {
             jwt.json().then(data => localStorage.setItem("logToken", data)).then(router.push("/profile"))
         } else {
             inputUser.value = ""
-            inputPass = ""
+            inputPass.value = ""
             document.querySelector("#errorMessage").textContent = "Invalid credentials"
         }
     }
